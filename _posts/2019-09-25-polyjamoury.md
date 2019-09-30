@@ -45,7 +45,9 @@ I frequently use [naga](https://github.com/jjtolton/naga), a super neat python/l
 ![spotifyfordevelopers](/photos/1569616318416.png)
 
 Authorization required signing up for [Spotify for Developers](https://developer.spotify.com), registering my application and picking a redirect URL. I soon received a 'client_id' and 'secret_id'.
-All values were saved in in`config.py` along with the desired `scope` of the project. These were then passed to Spotipy's utility method `util.prompt_for_user_token` as arguments to authorize the user.  
+All values were saved in in`config.py` along with the desired `scope` of the project. These were then passed to Spotipy's utility method `util.prompt_for_user_token` as arguments to authorize the user.
+Since Spotify's authorization is not indefinite, I also created a `reauth` function to aid in reauthorization efforts. I had to figure out a slight workaround for working in [pycharm](https://www.jetbrains.com/pycharm/) since the reauth link produced as an output to the authorization code cannot be followed from the IDE. 
+An additional step was added to print the code and return an access token.  
 {% highlight python %}
     def reauth(conn_str: str) -> "token":
         """Reauthorize spotify app.
@@ -68,7 +70,7 @@ All values were saved in in`config.py` along with the desired `scope` of the pro
     except Exception as e:
         token = None
         raise Exception("Unable to obtain token")
-    
+    k
     try:
         spotify = spotipy.Spotify(auth=token)
         user = spotify.current_user()
@@ -87,10 +89,29 @@ Authorization attempts are wrapped in `try-execpt` clauses to avoid the program 
 
 
 ## Recently Added Playlist
+![rhcp]("/photos/9d432dd2ed4e418b256cafaf9bf138a2d19366e6288eebf919e44642f57a8419.jpg")
+
 This project was the initial inspiration for this project. I often found myself frustrated when "shuffling all saved songs" on Spotify.
 It felt like I spent more time skipping past tracks that I felt like I had heard a million times rather than actually listening to my "freshest beats" aka
 the songs that had been most recently saved to my library. While ruminating over my annoyance one day I realized "Wait, I'm a super-hacker now...
 I wonder if spotify releases their APIs??" And this project was born.
+
+{% highlight python %}
+    def saved_tracks() -> list:
+        recent50 = get_recent50()
+        items_of_r50 = recent50['items']
+        next50 = get_next_50()
+        items_of_n50 = next50['items']
+        all_100_tracks = append(items_of_r50, items_of_n50)
+        return all_100_tracks
+{% endhighlight %}
+
+The first step in creating a playlist of recently saved songs, was identifying and isolating my most recently saved songs. However, the spotipy method `spotify.current_user_saved_tracks` only collects up to 50 tracks
+so the information for 100 tracks needed to be retrieved using two different function calls, `get_recent50()` and `get_next50()`. After pulling the relevant information from the data structure using the key ['items], the function `saved_tracks` returns a list of dictionaries containing relevant (and irrelevant) information about the track.
+The function `append` from the naga libary was used to concatenate all the dictionaries into one list.
+
+
+
 
 
 <!--more-->
