@@ -17,7 +17,7 @@ titles:
   ko-KR   : *KO
 key: page-about
 ---
-# Hello, my name is Jordan
+# Hello, get ready to meet a paradox
 
 <img src="/photos/71058255_10219958583940088_7748529758316527616_o.jpg" alt="Jordan wi Bully" width="200"/>
 <img src="/photos/IMG_20190430_180221_473.jpg" alt="42 " width="200"/>
