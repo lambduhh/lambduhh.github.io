@@ -21,7 +21,7 @@ while designing my Myspace page. Long before "daily mixes" and "Discovery Weekly
 and listening to each song and artist to discover new music... tediously categorizing my findings, creating new playlists, and renaming songs.
 
 Now as an adult, I unfortunately do not have the time to commit hours everyday curating the perfect playlists. However, I *have* gained the skills to build a data driven 
-computer program with the ability to manipulate, aggregate and perform actions based on musical data. For this project, I used [Spotipy](https://spotipy.readthedocs.io/en/latest/?highlight=delete#spotipy.client.Spotify.current_user_saved_tracks_delete)
+computer program with the ability to manipulate, aggregate and perform actions based on musical data. For this project, I used [Spotipy](https://spotipy.readthedocs.io/en/latest/)
 "a lightweight Python library" based on Spotify's RESTful APIs which are available at [Spotify for Developers](https://developer.spotify.com) .
 
 ## Project Architecture 
@@ -88,28 +88,54 @@ Authorization attempts are wrapped in `try-execpt` clauses to avoid the program 
 
 
 
-## Recently Added Playlist
-![rhcp]("/photos/9d432dd2ed4e418b256cafaf9bf138a2d19366e6288eebf919e44642f57a8419.jpg")
+## Recently Added Playlist  
+
+<img src="/photos/9d432dd2ed4e418b256cafaf9bf138a2d19366e6288eebf919e44642f57a8419.jpg" alt="rhcp" width="150" align="left" hspace="20" />
 
 This project was the initial inspiration for this project. I often found myself frustrated when "shuffling all saved songs" on Spotify.
 It felt like I spent more time skipping past tracks that I felt like I had heard a million times rather than actually listening to my "freshest beats" aka
 the songs that had been most recently saved to my library. While ruminating over my annoyance one day I realized "Wait, I'm a super-hacker now...
-I wonder if spotify releases their APIs??" And this project was born.
-
+I wonder if spotify releases their APIs??" And this project was born.  
+<br>
 {% highlight python %}
-    def saved_tracks() -> list:
-        recent50 = get_recent50()
-        items_of_r50 = recent50['items']
-        next50 = get_next_50()
-        items_of_n50 = next50['items']
-        all_100_tracks = append(items_of_r50, items_of_n50)
-        return all_100_tracks
+def saved_tracks() -> list:
+    recent50 = get_recent50()
+    items_of_r50 = recent50['items']
+    next50 = get_next_50()
+    items_of_n50 = next50['items']
+    all_100_tracks = append(items_of_r50, items_of_n50)
+    return all_100_tracks
 {% endhighlight %}
 
-The first step in creating a playlist of recently saved songs, was identifying and isolating my most recently saved songs. However, the spotipy method `spotify.current_user_saved_tracks` only collects up to 50 tracks
-so the information for 100 tracks needed to be retrieved using two different function calls, `get_recent50()` and `get_next50()`. After pulling the relevant information from the data structure using the key ['items], the function `saved_tracks` returns a list of dictionaries containing relevant (and irrelevant) information about the track.
-The function `append` from the naga libary was used to concatenate all the dictionaries into one list.
 
+The first step in creating a playlist of recently saved songs, was identifying and isolating my most recently saved songs.
+The [Spotipy](https://spotipy.readthedocs.io/en/latest/) method `spotify.current_user_saved_tracks` only collects up to 50 tracks per function call, so the information for
+100 tracks needed to be retrieved using two different calls, `get_recent50()` and `get_next50()` (recall that all spotipy methods are wrapped in functions that are imported from the `spot` directory).
+After pulling the relevant information from the data structure using the key `['items]`,
+the function `saved_tracks` returns a list of dictionaries containing relevant (and irrelevant) information about the track.
+The function `append` from the naga libary is then used to concatenate all the dictionaries into one master list that contains the user's last 100 saved tracks.
+
+{% highlight python %}
+def get_track_uris(d: dict) -> list:
+    # get_in returns the value in a nested associative structure, where second arg is a sequence of keys.
+    track_uri = get_in(d, ["track", "uri"], not_found=None)
+    return track_uri
+    
+def make_playlist_of_last_100(name_of_playlist, tracks):
+    # mapv = list(map())
+    s_track_uri_data = mapv(get_track_uris, tracks)
+    pl_id = create_playlist(name_of_playlist)
+    add_tracks_to_playlist(pl_id, s_track_uri_data)
+    return None
+{% endhighlight %}
+
+Although the most recently saved 100 tracks have now been identified, ALL the spotify data associated with each track has been copied over as well.
+To get a better idea of how to navigate this cumbersome data structure I copied it over to a `json` file named `s_track_data`. 
+![cumbersome](/photos/pycharm1.png)
+<br>
+Nested within almost 24k lines of code were 100 individual `track uri` values that needed to be extracted. OH MY!  
+Once again I turned to the naga libary for `get_in` and `mapv`. The function `get_in` returns a value from a nested associative data structure such as the one I had.
+Using map
 
 
 
