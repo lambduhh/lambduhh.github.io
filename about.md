@@ -17,13 +17,14 @@ titles:
   ko-KR   : *KO
 key: page-about
 ---
-# Hello, get ready to meet a paradox
+
 
 <img src="/photos/71058255_10219958583940088_7748529758316527616_o.jpg" alt="Jordan wi Bully" width="200"/>
 <img src="/photos/IMG_20190430_180221_473.jpg" alt="42 " width="200"/>
 <IMG SRC="/photos/GIF-190926_144953.gif" alt="lyra gif" width="200"/>
 <img src="/photos/IMG_20190926_153832_218.jpg" alt="Programming at computer" width="200"/>
 <p align="left">
+#Hello, my name is Jordan.
 Hippie hybrid nerd. I enjoy programming, aerial performing, and traveling (especially the outdoors).
 I first began my self taught journey in software development ~4 years ago.
 The foundation of my semantic knowledge follows the thought patterns associated with SICP, Scheme and Clojure.
