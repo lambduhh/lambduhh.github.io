@@ -21,7 +21,41 @@ I hope you enjoy this walkthrough as much as I enjoyed making this project!
 
 ### Creating a pool of data
 <img src="/photos/data-pool.jpg" alt="warning" width="200" align="right" hspace="20" />
-First steps to implement my algorithm called for creating a pool of data to draw tracks from. 
+
+First steps to implementing my algorithm called for creating a pool of data from which to draw songs. Rather than just selecting from all
+my saved tracks, I thought it would be more interesting to instead create a pool that contained songs that I may not necessarily be acquainted with.
+{% highlight python %}
+def get_all_saved_artists() -> list:
+    st = get_saved_artists('short_term')
+    stitems = st['items']
+    mt = get_saved_artists('medium_term')
+    mtitems = mt['items']
+    lt = get_saved_artists('long_term')
+    ltitems = lt['items']
+    return append(stitems, mtitems, ltitems)
+    
+def audio_features_all_saved():
+    saved_artists = get_all_saved_artists()
+    saved_artist_uri = set(mapv(get_artist_uris, saved_artists))
+    # 91 different top saved artists (9/16/19)
+    ttrack_database = []
+    for artist in saved_artist_uri:
+        all_artist_top_songs = get_artist_top_tracks(artist)['tracks']
+        for song in all_artist_top_songs:
+            ttrack_database.append(song['uri'])
+    # a database that is a list
+    # of user's top artist's top tracks, 921 songs (9/16/19)
+    return ttrack_database
+
+{% endhighlight %}
+
+I used a similar strategies as I did in `Recently Added Playlist` except this time I adapted the methods I used to append my `short-term`, `medium-term`, and `long-term` artists.
+As of 9/16/19 this extracted 91 of my different "favorite artists". After finding each `artist_uri` using `mapv`, I looped through and pulled each
+artist's **top 10 songs** and added each to `ttrack_database`. This left me with a pool of 921 songs by my favorite artists to play with. Now the real fun can begin!
+
+## 
+
+ 
 
 
 
