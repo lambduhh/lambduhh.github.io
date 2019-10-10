@@ -17,9 +17,9 @@ got to work launching Itunes, AOL Instant Messenger and my myspace page. Most of
 more fun.
 
 Creating this application reminded me of those good old days getting lost in the computer screen. My first lines of code were written at that desk
-while designing my Myspace page. Long before "daily mixes" and "Discovery Weekly" playlists, I logged many hours at that desktop, manually picking out
+while designing my Myspace page. Long before "Daily Mixes" and "Discovery Weekly" playlists, I logged many hours at that desktop, manually picking out
 and listening to each song and artist to discover new music... tediously categorizing my findings, creating new playlists, and renaming songs.
-
+l
 Now as an adult, I unfortunately do not have the time to commit hours everyday curating the perfect playlists. However, I *have* gained the skills to build a data driven 
 computer program with the ability to manipulate, aggregate and perform actions based on musical data. For this project, I used [Spotipy](https://spotipy.readthedocs.io/en/latest/)
 "a lightweight Python library" based on Spotify's RESTful APIs which are available at [Spotify for Developers](https://developer.spotify.com) .
@@ -160,8 +160,7 @@ After running `make_playlist_of_last_100` , I can open spotify on my phone and l
 ### Roadmap and TODOS
 Future improvements to this code could include an `auto_delete` function that automatically deletes the last Recently added playlist created before creating a new one (an action I am currently doing manually).
   
-# Part II Colorjamoury
-After completing this project I was excited to do more with the spotify API. I 
+
 
 
 
