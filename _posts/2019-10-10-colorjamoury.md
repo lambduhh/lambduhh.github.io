@@ -49,7 +49,7 @@ def audio_features_all_saved():
 
 {% endhighlight %}
 
-I used a similar strategies as I did in `Recently Added Playlist` except this time I adapted the methods I used to append my `short-term`, `medium-term`, and `long-term` artists.
+I used a similar strategies as I did in [Recently Added Playlist](https://lambduhh.github.io/2019/09/25/polyjamoury.html#recently-added-playlist) except this time I adapted the methods I used to append my `short-term`, `medium-term`, and `long-term` artists.
 As of 9/16/19 this extracted 91 of my different "favorite artists". After finding each `artist_uri` using `mapv`, I looped through and pulled each
 artist's **top 10 songs** and added each to `ttrack_database`. This left me with a pool of 921 songs by my favorite artists to play with. Now the real fun can begin!
 
