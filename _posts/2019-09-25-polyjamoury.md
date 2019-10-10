@@ -161,7 +161,7 @@ After running `make_playlist_of_last_100` , I can open spotify on my phone and l
 Future improvements to this code could include an `auto_delete` function that automatically deletes the last Recently added playlist created before creating a new one (an action I am currently doing manually).
   
 # Part II Colorjamoury
-After completing this project I 
+After completing this project I was excited to do more with the spotify API. I 
 
 
 
