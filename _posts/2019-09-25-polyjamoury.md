@@ -40,6 +40,9 @@ I frequently use [naga](https://github.com/jjtolton/naga), a super neat python/l
 >![folder](/photos/Paomedia-Small-N-Flat-Folder-document.svg)  'config.py'  
 >  A module to handle global constants mostly for authentication
 
+<img src="/photos/warning-icon.png" alt="warning" width="50" align="left" hspace="20" />
+To fully grasp the concepts used in this walkthrough, you should have a basic understanding of how [Higher Order Functions](https://www.oreilly.com/library/view/functional-programming-in/9781492048633/ch04.html) work including `map`, `filter`, `reduce` and `partial`.
+
 ## Getting Authorized  
 
 ![spotifyfordevelopers](/photos/1569616318416.png)
@@ -114,29 +117,51 @@ The [Spotipy](https://spotipy.readthedocs.io/en/latest/) method `spotify.current
 After pulling the relevant information from the data structure using the key `['items]`,
 the function `saved_tracks` returns a list of dictionaries containing relevant (and irrelevant) information about the track.
 The function `append` from the naga libary is then used to concatenate all the dictionaries into one master list that contains the user's last 100 saved tracks.
-
+Although the most recently saved 100 tracks have now been identified, ALL the spotify data associated with each track has been copied over as well.
+To get a better idea of how to navigate this cumbersome data structure I copied it over to a `json` file named `s_track_data`. 
+![cumbersome](/photos/pycharm1.png)
+Nested within almost 24k lines of code were 100 individual `track uri` values that needed to be extracted. OH MY!  
 {% highlight python %}
+
 def get_track_uris(d: dict) -> list:
     # get_in returns the value in a nested associative structure, where second arg is a sequence of keys.
     track_uri = get_in(d, ["track", "uri"], not_found=None)
     return track_uri
     
+def create_playlist(name_of_playlist):
+    playlist = playlist_create(name_of_playlist)
+    playlist_id = playlist['id']
+    return playlist_id
+
 def make_playlist_of_last_100(name_of_playlist, tracks):
     # mapv = list(map())
     s_track_uri_data = mapv(get_track_uris, tracks)
     pl_id = create_playlist(name_of_playlist)
     add_tracks_to_playlist(pl_id, s_track_uri_data)
     return None
+    
+if __name__ == '__main__':
+    all_tracks = saved_tracks()
+    make_playlist_of_last_100("latest added jamzz 10/3/19", all_tracks)
+
 {% endhighlight %}
 
-Although the most recently saved 100 tracks have now been identified, ALL the spotify data associated with each track has been copied over as well.
-To get a better idea of how to navigate this cumbersome data structure I copied it over to a `json` file named `s_track_data`. 
-![cumbersome](/photos/pycharm1.png)
 <br>
-Nested within almost 24k lines of code were 100 individual `track uri` values that needed to be extracted. OH MY!  
-Once again I turned to the naga libary for `get_in` and `mapv`. The function `get_in` returns a value from a nested associative data structure such as the one I had.
-Using map
+To create a predicate function for `map` to apply to the list of tracks, I once again turned to the naga libary for `get_in` and `mapv`.
+The function `get_in` returns a value from a nested associative data structure, while `mapv` simply lists and displays the content when mapping over a collection.
+I am able to use `mapv` to apply the `get_track_uris` function over each dictionary returned from `saved tracks`
+(which is passed into `make_playlist_of_last_100` as the second argument). Each `track_uri` is extracted and placed into a list named `s_track_uri_data`.
+The final steps included creating a playlist and adding each track to the playlist.
+After running `make_playlist_of_last_100` , I can open spotify on my phone and listen to my new playlist.
 
+<img src="/photos/recentlyaddedfinished.jpg" alt="finished" width="200x" align="left" hspace="20" />
+
+
+### Roadmap and TODOS
+Future improvements to this code could include an `auto_delete` function that automatically deletes the last Recently added playlist created before creating a new one (an action I am currently doing manually).
+  
+# Part II Colorjamoury
+After completing this project I 
 
 
 
