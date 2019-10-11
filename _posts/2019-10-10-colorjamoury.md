@@ -50,13 +50,19 @@ def audio_features_all_saved():
 {% endhighlight %}
 
 I used a similar strategies as I did in [Recently Added Playlist](https://lambduhh.github.io/2019/09/25/polyjamoury.html#recently-added-playlist) except this time I adapted the methods I used to append my `short-term`, `medium-term`, and `long-term` artists.
-As of 9/16/19 this extracted 91 of my different "favorite artists". After finding each `artist_uri` using `mapv`, I looped through and pulled each
+As of 9/16/19 this extracted 91 of my different **favorite artists**. After finding each `artist_uri` using `mapv`, I looped through and pulled each
 artist's **top 10 songs** and added each to `ttrack_database`. This left me with a pool of 921 songs by my favorite artists to play with. Now the real fun can begin!
 
-## 
+## Creating a mood
 
+When listening to any track I knew what "color" that **I** would categorize it into, but I needed to be able to duplicate this process
+in my program. To get a better idea of the story that the data wanted to tell I handpicked songs that I felt properly represented each color. 
+
+<div style="box-shadow: 3px 3px 2px darkred"> 
+<iframe src="https://open.spotify.com/embed/track/27gUeiai56GKF6TxvmPJut" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
+<div style="box-shadow: 3px 3px 3px darkred"> 
+<iframe src="https://open.spotify.com/embed/track/59WN2psjkt1tyaxjspN8fp" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> 
+ </div>
  
-
-
-
 To accurately paint the picture of moods I wanted to explore, I created a data type based on colors to correspond with mood. 
