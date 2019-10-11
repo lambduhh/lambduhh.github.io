@@ -55,10 +55,11 @@ artist's **top 10 songs** and added each to `ttrack_database`. This left me with
 
 ## Creating a mood
 
-When listening to any track I knew what "color" that ***I*** would categorize it into, but I needed to be able to duplicate this process
+When listening to any track I knew what color that ***I*** would categorize it, but I needed to be able to duplicate this process
 in my program. To get a better idea of the story that the data wanted to tell I handpicked songs that I felt properly represented each color. 
 
 
+<p style="width:600px;height:80px;background-color:red;color:black;border:1px;padding:2%;"> <strong> Red- Fast, Angry, Passionate </strong> </p>
 <iframe src="https://open.spotify.com/embed/track/27gUeiai56GKF6TxvmPJut" width="300" height="80" style="border:5px solid red;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
 <iframe src="https://open.spotify.com/embed/track/59WN2psjkt1tyaxjspN8fp" width="300" height="80" style="border:5px solid red;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe> 
  
