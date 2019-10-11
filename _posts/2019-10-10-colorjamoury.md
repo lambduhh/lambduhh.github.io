@@ -59,27 +59,27 @@ When listening to any track I knew what color that ***I*** would categorize it, 
 in my program. To get a better idea of the story that the data wanted to tell I handpicked songs that I felt properly represented each color. 
 
 
-<p style="max-width:605px;height:40px;background-color:red;color:black;border:1px;padding:1px;"> <strong> Red- Fast, Angry, Passionate </strong> </p>                
-
-<iframe src="https://open.spotify.com/embed/track/27gUeiai56GKF6TxvmPJut" width="300" height="80" style="border:5px solid red;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
-<iframe src="https://open.spotify.com/embed/track/59WN2psjkt1tyaxjspN8fp" width="300" height="80" style="border:5px solid red;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe> 
+<p style="max-width:705px;height:40px;background-color:red;color:black;border:1px;padding:1px;"> <strong> Red- Fast, Angry, Passionate </strong> </p> 
+<iframe src="https://open.spotify.com/embed/track/27gUeiai56GKF6TxvmPJut" width="350" height="80" style="border:5px solid red;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
+<iframe src="https://open.spotify.com/embed/track/59WN2psjkt1tyaxjspN8fp" width="350" height="80" style="border:5px solid red;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe> 
  
-<p style="max-width:605px;height:40px;background-color:gold;color:black;border:1px;padding:1px;"> <strong> Yellow- Sunny, Positive, Upbeat </strong> </p>                
-<iframe src="https://open.spotify.com/embed/track/6YbhspuOar1D9WSSnfe7ds" width="300" height="80" style="border:5px solid gold;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
-<iframe src="https://open.spotify.com/embed/track/63dv2zKXPamiHHOKQBOzbU" width="300" height="80" style="border:5px solid gold;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
+<p style="max-width:705px;height:40px;background-color:gold;color:black;border:1px;padding:1px;"> <strong> Yellow- Sunny, Positive, Upbeat </strong> </p>                
+<iframe src="https://open.spotify.com/embed/track/6YbhspuOar1D9WSSnfe7ds" width="350" height="80" style="border:5px solid gold;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
+<iframe src="https://open.spotify.com/embed/track/63dv2zKXPamiHHOKQBOzbU" width="350" height="80" style="border:5px solid gold;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
 
-<p style="max-width:605px;height:40px;background-color:green;color:black;border:1px;padding:1px;"> <strong> Green- Mellow, Acoustic, Calm </strong> </p>                
-<iframe src="https://open.spotify.com/embed/track/6kLqKntp2x4QVXHwqLHMYm" width="300" height="80" style="border:5px solid green;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
-<iframe src="https://open.spotify.com/embed/track/7ceOfsRdzaLgpf5TAKSgu5" width="300" height="80" style="border:5px solid green;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
+<p style="max-width:705px;height:40px;background-color:green;color:black;border:1px;padding:1px;"> <strong> Green- Mellow, Acoustic, Calm </strong> </p>                
+<iframe src="https://open.spotify.com/embed/track/6kLqKntp2x4QVXHwqLHMYm" width="350" height="80" style="border:5px solid green;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
+<iframe src="https://open.spotify.com/embed/track/7ceOfsRdzaLgpf5TAKSgu5" width="350" height="80" style="border:5px solid green;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
 
-<p style="max-width:605px;height:40px;background-color:lightskyblue;color:black;border:1px;padding:1px;"> <strong> Blue- Soothing, Slow, Sad </strong> </p>                
-<iframe src="https://open.spotify.com/embed/track/3ZkleTkBBKIPKJh9jIqT7s" width="300" height="80" style="border:5px solid lightskyblue;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe> 
-<iframe src="https://open.spotify.com/embed/track/26uHwSHlaK5mskSMhbRod3" width="300" height="80" style="border:5px lightskyblue;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
+<p style="max-width:705px;height:40px;background-color:lightskyblue;color:black;border:1px;padding:1px;"> <strong> Blue- Soothing, Slow, Sad </strong> </p>                
+<iframe src="https://open.spotify.com/embed/track/3ZkleTkBBKIPKJh9jIqT7s" width="350" height="80" style="border:5px solid lightskyblue;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe> 
+<iframe src="https://open.spotify.com/embed/track/26uHwSHlaK5mskSMhbRod3" width="350" height="80" style="border:5px lightskyblue;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
 
-<p style="max-width:605px;height:40px;background-color:pink;color:black;border:1px;padding:1px;"> <strong> Pink- Feminine, Fun, Dancable </strong> </p>                
-<iframe src="https://open.spotify.com/embed/track/6aLpLTAUASREvQE105XOb3" width="300" height="80" style="border:5px solid pink;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
-<iframe src="https://open.spotify.com/embed/track/0lsRatBUs9HNIZAmoGABzk" width="300" height="80" style="border:5px solid pink;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
+<p style="max-width:705px;height:40px;background-color:pink;color:black;border:1px;padding:1px;"> <strong> Pink- Feminine, Fun, Dancable </strong> </p>                
+<iframe src="https://open.spotify.com/embed/track/6aLpLTAUASREvQE105XOb3" width="350" height="80" style="border:5px solid pink;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
+<iframe src="https://open.spotify.com/embed/track/0lsRatBUs9HNIZAmoGABzk" width="350" height="80" style="border:5px solid pink;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
 
- 
+For each track I copied the `song_features` over to a `json` file using
+>> 
  
 To accurately paint the picture of moods I wanted to explore, I created a data type based on colors to correspond with mood. 
