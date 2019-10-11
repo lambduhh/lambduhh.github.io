@@ -59,9 +59,10 @@ When listening to any track I knew what color that ***I*** would categorize it, 
 in my program. To get a better idea of the story that the data wanted to tell I handpicked songs that I felt properly represented each color. 
 
 
-<p style="width:350px;height:80px;background-color:red;color:black;border:1px;padding:2%;"> <strong> Red- Fast, Angry, Passionate </strong> </p>
-<iframe src="https://open.spotify.com/embed/track/27gUeiai56GKF6TxvmPJut" width="350" height="80" style="border:5px solid red;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
-<iframe src="https://open.spotify.com/embed/track/59WN2psjkt1tyaxjspN8fp" width="350" height="80" style="border:5px solid red;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe> 
+<p style="max-width:600px;height:60px;background-color:red;color:black;border:1px;padding:1px;"> <strong> Red- Fast, Angry, Passionate </strong> </p>                
+
+<iframe src="https://open.spotify.com/embed/track/27gUeiai56GKF6TxvmPJut" width="300" height="80" style="border:5px solid red;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
+<iframe src="https://open.spotify.com/embed/track/59WN2psjkt1tyaxjspN8fp" width="300" height="80" style="border:5px solid red;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe> 
  
 <iframe src="https://open.spotify.com/embed/track/6YbhspuOar1D9WSSnfe7ds" width="300" height="80" style="border:5px solid yellow;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
 <iframe src="https://open.spotify.com/embed/track/63dv2zKXPamiHHOKQBOzbU" width="300" height="80" style="border:5px solid yellow;" frameborder="1" allowtransparency="true" allow="encrypted-media"></iframe>
