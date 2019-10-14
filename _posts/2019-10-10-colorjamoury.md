@@ -219,10 +219,16 @@ help you digest the next section of code. If you are intrigued by what you see h
 series of videos offered by MITOpenCourseWare. 
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/X7HmltUWXgs?start=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="320" height="215" src="https://www.youtube.com/embed/X7HmltUWXgs?start=1" align="left" marginwidth="50" frameborder="2px" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
-*Procedures as Black Box Abstractions*
-When working to solve a problem, a natural strategy is to break it down into more easily manageable parts. Think of
+### Procedures as Black Box Abstractions
+When working to solve a problem, a natural best strategy is to break it down into smaller, more easily manageable parts. In FP we rely on 
+separation of concerns to dictate the purpose of each different building block or function. Each function has one purpose or objective- and
+we can test this by looking at the input (i.e. parameters or arguments) and output (i.e. the return statement).
+By observing *only* the input and output we let the inner workings of our function become irrelevant. "At that moment we are
+not concerned with *how* the procedure computes its result, only with the fact that it computes (..) The details of how the (function) is computed
+ can be suppressed, to be considered at a later time. Indeed, as far as the procedure is concerned, it is not quite a procedure but rather an abstraction"
+of a procedure, a so-called *procedural abstraction*. At this level of abstraction, any procedure that computes
 **functions** or **procedures** as mini robots, they have an input, an output and an intended abstract "purpose".
 
 
