@@ -9,7 +9,7 @@ article_header:
 ## The many moods of the rainbow.
 
 While messing around with the [Spotify](https://developer.spotify.com/documentation/web-api/) APIs I found one of the most interesting data points they offered insight into was
-a track's "audio features". Each song in Spotify has 18 different attributes that can be derived, displayed and utilized as a data reference.
+a track's [audio features](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/). Each song in Spotify has 18 different attributes that can be derived, displayed and utilized as a data reference.
 I was impressed by Spotify's ability to seemingly quantify music and represent a song as data and I wondered how far I
 could experiment with this information. Using my personal interpretation of how colors correspond
 to mood I set out to create user playlists that group together similar sounding tracks for a personalized listening experience.
@@ -19,41 +19,7 @@ I hope you enjoy this walkthrough as much as I enjoyed making this project!
 
 <img src="/photos/warning-icon.png" alt="warning" width="50" align="left" hspace="20" />If you haven't yet, please refer to [Polyjamoury](https://lambduhh.github.io/2019/09/25/polyjamoury.html) for an introduction to the Project Architecture and Authorization Steps. 
 
-### Creating a pool of data
-<img src="/photos/data-pool.jpg" alt="warning" width="200" align="right" hspace="20" />
-
-First steps to implementing my algorithm called for creating a pool of data from which to draw songs. Rather than just selecting from all
-my saved tracks, I thought it would be more interesting to instead create a pool that contained songs that I may not necessarily be acquainted with.
-{% highlight python %}
-def get_all_saved_artists() -> list:
-    st = get_saved_artists('short_term')
-    stitems = st['items']
-    mt = get_saved_artists('medium_term')
-    mtitems = mt['items']
-    lt = get_saved_artists('long_term')
-    ltitems = lt['items']
-    return append(stitems, mtitems, ltitems)
-    
-def audio_features_all_saved():
-    saved_artists = get_all_saved_artists()
-    saved_artist_uri = set(mapv(get_artist_uris, saved_artists))
-    # 91 different top saved artists (9/16/19)
-    ttrack_database = []
-    for artist in saved_artist_uri:
-        all_artist_top_songs = get_artist_top_tracks(artist)['tracks']
-        for song in all_artist_top_songs:
-            ttrack_database.append(song['uri'])
-    # a database that is a list
-    # of user's top artist's top tracks, 921 songs (9/16/19)
-    return ttrack_database
-
-{% endhighlight %}
-
-I used a similar strategies as I did in [Recently Added Playlist](https://lambduhh.github.io/2019/09/25/polyjamoury.html#recently-added-playlist) except this time I adapted the methods I used to append my `short-term`, `medium-term`, and `long-term` artists.
-As of 9/16/19 this extracted 91 of my different **favorite artists**. After finding each `artist_uri` using `mapv`, I looped through and pulled each
-artist's **top 10 songs** and added each to `ttrack_database`. This left me with a pool of 921 songs by my favorite artists to play with. Now the real fun can begin!
-
-## Creating a mood
+## Composing a mood
 
 When listening to any track I knew what color that ***I*** would categorize it, but I needed to be able to duplicate this process
 in my program. To get a better idea of the story that the data wanted to tell I handpicked songs that I felt properly represented each color. 
@@ -110,9 +76,9 @@ Here is an example of the output:
 ]
 {% endhighlight %}
 
-I was then able to analyze and compare the similarities between each track in relation to one another and color I chose to represent them. 
-To accurately paint the picture of the moods I wanted to explore, I then created my constraints based on each color and how it correspond with mood.
-For this project I focused on 5 different attributes: danceability, energy, tempo, acousticness and valence.
+I was then able to analyze and compare the similarities between each track in relation to one another. 
+To accurately paint the picture of the moods I wanted to explore, I then composed my constraints based on this audio information and how it corresponded with the intended mood/color.
+For this project I focused on 5 different attributes: danceability, energy, tempo, acousticness and valence. These are the definitions from the [Spotify](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/) documentation.
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#9ABAD9;}
@@ -161,4 +127,103 @@ For this project I focused on 5 different attributes: danceability, energy, temp
   </tr>
 </table>
 
+
+## Sketching out Constraints
  
+Remember when I mentioned we were going to get into some "data-driven development"? Well buckle your seatbelts kiddos because here is the dashing dictionary
+that is the star of this show!
+{% highlight python %}
+colors = {"red": {"danceability": {"min": 0, 'max': .5},
+                  "energy": {"min": .7, 'max': 1.0},
+                  "acousticness": {"min": 0, 'max': .4},
+                  "tempo": {"min": 65.0, 'max': 300.0},
+                  "valence": {"min": 0, 'max': .45}
+                  },
+          "yellow": {"danceability": {"min": .45, 'max': 1.0},
+                     "energy": {"min": .6, 'max': 1.0},
+                     "acousticness": {"min": 0, 'max': .5},
+                     "tempo": {"min": 60.0, 'max': 200.0},
+                     "valence": {"min": .8, 'max': 1.0}
+                     },
+          "pink": {"danceability": {"min": .7, 'max': 1.0},
+                   "energy": {"min": .25, 'max': .8},
+                   "acousticness": {"min": 0, 'max': .5},
+                   "tempo": {"min": 0, 'max': 150},
+                   "valence": {"min": .5, 'max': .85},
+                   },
+          "green": {"danceability": {"min": .5, 'max': .7},
+                    "energy": {"min": .2, 'max': .5},
+                    "acousticness": {"min": .5, 'max': 1.0},
+                    "tempo": {"min": 0.0, 'max': 180},
+                    "valence": {"min": .35, 'max': .75}
+                    },
+          "blue": {"danceability": {"min": 0, 'max': .48},
+                   "energy": {"min": 0, 'max': .5},
+                   "acousticness": {"min": .2, 'max': .8},
+                   "tempo": {"min": 0, 'max': 180},
+                   "valence": {"min": 0, 'max': .5}
+                   }}
+
+{% endhighlight %}
+
+
+## Creating a pool of data  
+
+
+<img src="/photos/data-pool.jpg" alt="warning" width="200" align="right" hspace="20" />
+
+Next steps to implementing my algorithm called for creating a pool of data from which to draw songs to compare to my data type.
+Rather than just selecting from all
+my saved tracks, I thought it would be more interesting to instead create a pool that contained songs that I may not necessarily be acquainted with.
+I listen to a myriad of different musical artists and genres and I wanted that to be reflected in my playlists so I decided to take my top artist's top songs.
+
+{% highlight python %}
+def get_all_fav_artists() -> list:
+    st = get_saved_artists('short_term')
+    stitems = st['items']
+    mt = get_saved_artists('medium_term')
+    mtitems = mt['items']
+    lt = get_saved_artists('long_term')
+    ltitems = lt['items']
+    return append(stitems, mtitems, ltitems)
+
+    
+def audio_features_all_favs() -> list:
+    fav_artists = get_all_fav_artists()
+    saved_artist_uri = set(mapv(get_artist_uris, fav_artists))
+    # 91 different top saved artists (9/16/19)
+    ttrack_database = []
+    for artist in saved_artist_uri:
+        all_artist_top_songs = get_artist_top_tracks(artist)['tracks']
+        for song in all_artist_top_songs:
+            ttrack_database.append(song['uri'])
+    # a database that is a list
+    # of user's top artist's top tracks, 921 songs (9/16/19), 750 songs (10/11/19)
+    return ttrack_database
+{% endhighlight %}
+
+I used a similar strategies as I did in [Recently Added Playlist](https://lambduhh.github.io/2019/09/25/polyjamoury.html#recently-added-playlist) except this time I adapted the methods I used to append my `short-term`, `medium-term`, and `long-term` artists.
+As of 9/16/19 this extracted 91 of my different **favorite artists**. After finding each `artist_uri` using `mapv`, I looped through and pulled each
+artist's **top 10 songs** and added each to `ttrack_database`. This left me with a pool of 921 songs by my most listened to artists to play with.
+Down in my `if __name__ == '__main__':` I assigned `top_artist_top_tracks = audio_features_all_favs()` I found that running this section
+of code took quite a while so to manage my runtime I copied it all over to a .json file `all_fav_song_features`.
+`
+## Black Box Abstractions
+
+This next part can get a little complex if you aren't well acquainted with Functional Programming concepts so to
+introduce these paradigms we are going to take a little break and step away from our Polyjamoury code for just one moment.
+As tempted as I am to explore all the different nuances between Procedural/Imperative and Functional Programming ideologies,
+that is not the focus of this article. For my intents and purposes I am just going to review a couple of key concepts that may
+help you digest the next section of code. If you are intrigued by what you see here, I encourage you to read [SICP](https://mitpress.mit.edu/sites/default/files/sicp/index.html)
+(affectionately known as 'The Wizard Book) and watch [this](https://www.youtube.com/watch?v=2Op3QLzMgSY&list=PL8FE88AA54363BC46)
+series of videos offered by MITOpenCourseWare. 
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X7HmltUWXgs?start=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ 
+*Procedures as Black Box Abstractions*
+When working to solve a problem, a natural strategy is to break it down into more easily manageable parts. Think of
+**functions** or **procedures** as mini robots, they have an input, an output and an intended abstract "purpose".
+
+
+
