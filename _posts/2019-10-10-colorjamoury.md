@@ -208,11 +208,13 @@ artist's **top 10 songs** and added each to `ttrack_database`. This left me with
 Down in my `if __name__ == '__main__':` I assigned `top_artist_top_tracks = audio_features_all_favs()` I found that running this section
 of code took quite a while so to manage my runtime I copied it all over to a .json file `all_fav_song_features`.
 `
-## Black Box Abstractions
+## A Small Side of FPS - Functional Programming Snobbery
 
 This next part can get a little complex if you aren't well acquainted with Functional Programming concepts so to
 introduce these paradigms we are going to take a little break and step away from our Polyjamoury code for just one moment.
-As tempted as I am to explore all the different nuances between Procedural/Imperative and Functional Programming ideologies,
+If you are already familiar with `filter` and `partial` than please feel free to skip down to the ___ section.  
+
+Alright folks, as tempted as I am to explore all the different nuances between Procedural/Imperative and Functional Programming ideologies,
 that is not the focus of this article. For my intents and purposes I am just going to review a couple of key concepts that may
 help you digest the next section of code. If you are intrigued by what you see here, I encourage you to read [SICP](https://mitpress.mit.edu/sites/default/files/sicp/index.html)
 (affectionately known as 'The Wizard Book) and watch [this](https://www.youtube.com/watch?v=2Op3QLzMgSY&list=PL8FE88AA54363BC46)
@@ -220,7 +222,7 @@ series of videos offered by MITOpenCourseWare.
  
 ### Procedures as Black Box Abstractions
 
-<img src="/photos/blackbox.png" alt="blackbox" max-width="600" height="200" align="left" hspace="20" />
+<img src="/photos/blackbox.png" alt="blackbox" max-width="500" height="200" align="left" hspace="20" />
 
 When working to solve a problem, a natural strategy is to break it down into smaller, more easily manageable parts. We can rely on 
 separation of concerns to dictate the purpose of each different building block or function. Each function has one purpose or objective- and
@@ -249,6 +251,8 @@ in the [functools](https://docs.python.org/3/library/functools.html) module.
 When using a Higher Order Function I often refer to the function I write to "feed" to the Higher Order Function as a "predicate" function.
 Let's say you are asked to find which numbers are even when given a list of numbers [1 ,2, 3, 4]. We could use [filter](https://www.w3schools.com/python/ref_func_filter.asp)
 to do so, but first we need to write a function to pass to `filter`
+*Note: Since computers are lazy when using a HOF `list` must be used to display the content, otherwise your output will read `<filter object at 0x7d98ab32a700>`*
+  
 {% highlight python %}
 def is_even(number):  # this is the predicate function
     if (number % 2) == 0:
@@ -256,7 +260,7 @@ def is_even(number):  # this is the predicate function
 
 
 def returns_even_numbers(list_of_numbers):
-    even_numbers = list(filter(is_even, list_of_numbers))
+    even_numbers = list(filter(is_even, list_of_numbers)) 
     return even_numbers
 
 
@@ -300,11 +304,16 @@ def adds_some_numbers(a, b, c):
     return a + b + c
 
 adds_10_to_some_numbers = partial(adds_some_numbers, 10)
+
 if __name__ == '__main__':
     print(adds_10_to_some_numbers(10, 20))
 >> 40
 
 {% endhighlight %}
+
+So `partial` is kind of like your cool friend Greg who actually brings his own beer to the party.
+
+#  
 
 
 
