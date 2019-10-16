@@ -6,7 +6,7 @@ article_header:
   image:
     src: /photos/imageedit_1_7997346933.jpg
 ---
-## The many moods of the rainbow.
+## The Many Moods of the Rainbow.
 
 While messing around with the [Spotify](https://developer.spotify.com/documentation/web-api/) APIs I found one of the most interesting data points they offered insight into was
 a track's [audio features](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/). Each song in Spotify has 18 different attributes that can be derived, displayed and utilized as a data reference.
@@ -217,19 +217,100 @@ that is not the focus of this article. For my intents and purposes I am just goi
 help you digest the next section of code. If you are intrigued by what you see here, I encourage you to read [SICP](https://mitpress.mit.edu/sites/default/files/sicp/index.html)
 (affectionately known as 'The Wizard Book) and watch [this](https://www.youtube.com/watch?v=2Op3QLzMgSY&list=PL8FE88AA54363BC46)
 series of videos offered by MITOpenCourseWare. 
-
-
-<iframe width="320" height="215" src="https://www.youtube.com/embed/X7HmltUWXgs?start=1" align="left" marginwidth="50" frameborder="2px" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
 ### Procedures as Black Box Abstractions
-When working to solve a problem, a natural best strategy is to break it down into smaller, more easily manageable parts. In FP we rely on 
+
+<img src="/photos/blackbox.png" alt="blackbox" max-width="600" height="200" align="left" hspace="20" />
+
+When working to solve a problem, a natural strategy is to break it down into smaller, more easily manageable parts. We can rely on 
 separation of concerns to dictate the purpose of each different building block or function. Each function has one purpose or objective- and
 we can test this by looking at the input (i.e. parameters or arguments) and output (i.e. the return statement).
-By observing *only* the input and output we let the inner workings of our function become irrelevant. "At that moment we are
-not concerned with *how* the procedure computes its result, only with the fact that it computes (..) The details of how the (function) is computed
- can be suppressed, to be considered at a later time. Indeed, as far as the procedure is concerned, it is not quite a procedure but rather an abstraction"
+By observing *only* the input and output we let the inner workings of our function become irrelevant. 
+>"At that moment we are not concerned with *how* the procedure computes its result, only with the fact that it computes.
+The details of how the (function) is computed can be suppressed, to be considered at a later time.
+Indeed, as far as the procedure is concerned, it is not quite a procedure but rather an *abstraction*
 of a procedure, a so-called *procedural abstraction*. At this level of abstraction, any procedure that computes
-**functions** or **procedures** as mini robots, they have an input, an output and an intended abstract "purpose".
+is equally good." (Abelson, H. (1979) **SICP** Cambridge, MA. The MIT Press)
+
+
+
+<iframe width="320" height="215" src="https://www.youtube.com/embed/X7HmltUWXgs?start=1" align="left" frameborder="2px" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+You can think of **functions** or **procedures** as mini robots, they have an input, an output and an intended abstract "purpose".
+Each robot that is built can operate independent of one another. This allows them to be moved or changed with each robot's `state` remaining contained (i.e. no `side effects`).
+This is referred to as `immutable state` and is beneficial to consider when writing large programs.
+
+But what happens if one robot was to build a smaller robot? Or if one robot was able to pick up and use another robot?
+This is what a [Higher Order Function](https://en.wikipedia.org/wiki/Higher-order_function) does. Many useful HOF can be found
+in the [functools](https://docs.python.org/3/library/functools.html) module.
+> A Higher Order Function is a function that does at least one of the following:
+- takes on or more functions as arguments
+- returns a function as its result
+### Filter
+When using a Higher Order Function I often refer to the function I write to "feed" to the Higher Order Function as a "predicate" function.
+Let's say you are asked to find which numbers are even when given a list of numbers [1 ,2, 3, 4]. We could use [filter](https://www.w3schools.com/python/ref_func_filter.asp)
+to do so, but first we need to write a function to pass to `filter`
+{% highlight python %}
+def is_even(number):  # this is the predicate function
+    if (number % 2) == 0:
+        return True
+
+
+def returns_even_numbers(list_of_numbers):
+    even_numbers = list(filter(is_even, list_of_numbers))
+    return even_numbers
+
+
+if __name__ == '__main__':
+    print(returns_even_numbers([1, 2, 3, 4]))
+    
+>>> [2, 4]
+{% endhighlight %}
+
+Here is a visualization of the process `filter` is going through to return the new list [ 2, 4 ]
+
+<img src="/photos/filter.png" alt="filter" max-width="600" height="300" hspace="20" />
+
+Get it? Got it? Good! Now let's move on to just *one* more concept before getting back to the polyjamoury code.  
+
+### Partial
+The next relevant HOF to understand is `functools. partial`. 
+> Partial creates a *new* version of the given function
+with one or more arguments already filled in.
+
+Implementing `partial` in your code can allow for more flexibility in your callbacks and can make for more elegant and reusable code.
+Another benefit to using `partial` is it's ability to be passed in to a function as a single argument, although it carries the
+weight of what could possibly be many more arguments.
+{% highlight python %}
+
+def adds_some_numbers(a, b, c):
+    return a + b + c
+
+def adds_10_to_some_numbers(a, b):
+    return adds_some_numbers(10, a, b)
+    
+if __name__ == '__main__':
+    print(adds_10_to_some_numbers(10, 20))
+>> 40
+
+{% endhighlight %}
+
+This code above does the same thing as this code below:
+{% highlight python %}
+def adds_some_numbers(a, b, c):
+    return a + b + c
+
+adds_10_to_some_numbers = partial(adds_some_numbers, 10)
+if __name__ == '__main__':
+    print(adds_10_to_some_numbers(10, 20))
+>> 40
+
+{% endhighlight %}
+
+
+
+
+ 
+
 
 
 
