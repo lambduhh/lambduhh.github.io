@@ -6,7 +6,7 @@ article_header:
   image:
     src: /photos/imageedit_1_7997346933.jpg
 ---
-## The Many Moods of the Rainbow.
+# The Many Moods of the Rainbow.
 
 While messing around with the [Spotify](https://developer.spotify.com/documentation/web-api/) APIs I found one of the most interesting data points they offered insight into was
 a track's [audio features](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/). Each song in Spotify has 18 different attributes that can be derived, displayed and utilized as a data reference.
@@ -246,7 +246,9 @@ This is what a [Higher Order Function](https://en.wikipedia.org/wiki/Higher-orde
 in the [functools](https://docs.python.org/3/library/functools.html) module.
 > A Higher Order Function is a function that does at least one of the following:
 - takes on or more functions as arguments
-- returns a function as its result
+- returns a function as its result  
+
+
 ### Filter
 When using a Higher Order Function I often refer to the function I write to "feed" to the Higher Order Function as a "predicate" function.
 Let's say you are asked to find which numbers are even when given a list of numbers [1 ,2, 3, 4]. We could use [filter](https://www.w3schools.com/python/ref_func_filter.asp)
@@ -311,15 +313,68 @@ if __name__ == '__main__':
 
 {% endhighlight %}
 
-So `partial` is kind of like your cool friend Greg who actually brings his own beer to the party.
+<img src="/photos/goodguypartial.jpg" alt="goodguypartial" height="200" width="250" align="right" hspace="20" />
+<br>
+So `partial` is kind of like your cool friend Greg who actually brings his own beer to the party.  <br> <br>
+  
+  
 
-#  
+## Comparing to Sort
+Now we have all that sorted out we can return to the main project. At this point I have created a pool of song data
+for my algorithm and constructed the constraints by which to sort songs into their mood color.  
+But how can I go about actually sorting each song and placing it into a playlist?  
+Well, my next step will be to create a "predicate function" so that I may be able use `filter` to compare the audio features
+of each track to the color desired .
+{% highlight python %}
+# predicate fn to get passed to (filter(partial(fn))
+def is_song_color(color: dict, song: dict) -> bool:
+    if not color["danceability"]["min"] <= song["danceability"] <= color["danceability"]["max"]:
+        return False
+    elif not color["energy"]["min"] <= song["energy"] <= color["energy"]["max"]:
+        return False
+    elif not color["acousticness"]["min"] <= song["acousticness"] <= color["acousticness"]["max"]:
+        return False
+    elif not color["tempo"]["min"] <= song["tempo"] <= color["tempo"]["max"]:
+        return False
+    elif not color["valence"]["min"] <= song["valence"] <= color["valence"]["max"]:
+        return False
+    else:
+        return True
+
+{% endhighlight %}
+
+All this function does is ask the question- Does the information in this *single* tracks's audio features (`song: dict`) fit within the constraints
+ of `color :dict` ? If so, return True.
+ In other words, `is_song_color`?
+  
+ {% highlight python %}
+
+def get_song_features():
+    with open('json_data/all_fav_songs_features.json') as f:
+        all_fav_songs_features = json.load(f)
+    return all_fav_songs_features
 
 
+def create_color_data(color: str) -> list:
+    all_fav_songs_features = get_song_features()
+    colorsongs = list(filter(partial(is_song_color, colors[color]), all_fav_songs_features.values()))
+    return colorsongs
 
 
- 
+def save_songs(colorsongs):
+    with open('colorsongs.json', 'w') as f:
+        f.write(json.dumps(colorsongs, indent=2))
+    return colorsongs
 
+    
+if __name__ == '__main__':
+    colorsongs = create_color_data("red")
+    save_songs(colorsongs)
 
+    
+ {% endhighlight %}
+As I mentioned earlier, to manage runtime and make my life easier I wrote the pool of data `all_song_features` to a `.json` file.
+When `create_color_data` is run with the selected color passed in as an argument it returns a list of the tracks that fit within the
+constraints of that particular color. 
 
-
+<img src="/photos/filterpartialred.svg" alt="filterpartial" hspace="20" />
