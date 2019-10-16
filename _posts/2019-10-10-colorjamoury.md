@@ -377,4 +377,4 @@ As I mentioned earlier, to manage runtime and make my life easier I wrote the po
 When `create_color_data` is run with the selected color passed in as an argument it returns a list of the tracks that fit within the
 constraints of that particular color. 
 
-<img src="/photos/filterpartialred.png" alt="filterpartial" hspace="20" />
+<img src="/photos/filterpartialred.png" max-height="300" max-width="600" alt="filterpartial" hspace="20" />
