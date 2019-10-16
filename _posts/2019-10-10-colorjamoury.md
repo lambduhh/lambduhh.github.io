@@ -78,7 +78,8 @@ Here is an example of the output:
 
 I was then able to analyze and compare the similarities between each track in relation to one another. 
 To accurately paint the picture of the moods I wanted to explore, I then composed my constraints based on this audio information and how it corresponded with the intended mood/color.
-For this project I focused on 5 different attributes: danceability, energy, tempo, acousticness and valence. These are the definitions from the [Spotify](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/) documentation.
+For this project I focused on 5 different attributes: **danceability, energy, tempo, acousticness and valence**.
+These are the definitions from the [Spotify](https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/) documentation.
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#9ABAD9;}
@@ -212,7 +213,8 @@ of code took quite a while so to manage my runtime I copied it all over to a .js
 
 This next part can get a little complex if you aren't well acquainted with Functional Programming concepts so to
 introduce these paradigms we are going to take a little break and step away from our Polyjamoury code for just one moment.
-If you are already familiar with `filter` and `partial` than please feel free to skip down to the ___ section.  
+If you are already familiar with `filter` and `partial` than please feel free to skip down to the next
+<A HREF="#comparing">section</A>
 
 Alright folks, as tempted as I am to explore all the different nuances between Procedural/Imperative and Functional Programming ideologies,
 that is not the focus of this article. For my intents and purposes I am just going to review a couple of key concepts that may
@@ -274,7 +276,7 @@ if __name__ == '__main__':
 
 Here is a visualization of the process `filter` is going through to return the new list [ 2, 4 ]
 
-<img src="/photos/filter.png" alt="filter" max-width="600" height="300" hspace="20" />
+<img src="/photos/filter.png" alt="filter" max-width="400" max-height="200" hspace="5" />
 
 Get it? Got it? Good! Now let's move on to just *one* more concept before getting back to the polyjamoury code.  
 
@@ -318,6 +320,7 @@ if __name__ == '__main__':
 So `partial` is kind of like your cool friend Greg who actually brings his own beer to the party.  <br> <br>
   
   
+<a name="comparing">
 
 ## Comparing to Sort
 Now we have all that sorted out we can return to the main project. At this point I have created a pool of song data
@@ -373,8 +376,10 @@ if __name__ == '__main__':
 
     
  {% endhighlight %}
-As I mentioned earlier, to manage runtime and make my life easier I wrote the pool of data `all_song_features` to a `.json` file.
-When `create_color_data` is run with the selected color passed in as an argument it returns a list of the tracks that fit within the
+As I mentioned earlier, to manage runtime I wrote the pool of data `all_song_features` to a `.json` file.
+I also created the function `save_songs` to copy the list of tracks of a given color over to a file titled `colorsongs` so I could view
+each collection more clearly.  
+When `create_color_data` is run with the selected color passed in as an argument, it returns a list of the tracks that fit within the
 constraints of that particular color. 
 
-<img src="/photos/filterpartialred.png" max-height="300" max-width="600" alt="filterpartial" hspace="20" />
+![filterpartial](/photos/filterpartialred.svg)
