@@ -378,7 +378,8 @@ if __name__ == '__main__':
     save_songs(colorsongs)
       
  {% endhighlight %}
- 
+
+
 When `create_color_data` is run with the selected color passed in as an argument, it will return a list of the tracks that fit within the
 constraints of that particular color. Here is a little lucidchart I whipped up as a visual representation of the steps `filter` and `partial`
 are going through. Consider it a psuedo-color-coded step through for your viewing pleasure.
@@ -387,7 +388,7 @@ are going through. Consider it a psuedo-color-coded step through for your viewin
 Now that I have a list of tracks that fit within each given color, my last step to seal the deal is to
 extract out each `track_uri` and add the tracks to a playlist!
 
-{% python highlight %}
+{% highlight python %}
 def create_color_pl(colorsongs: list, title: str) -> None:
     pl_id = create_playlist(title)
     playlist = []
@@ -404,7 +405,18 @@ if __name__ == '__main__':
     
 {% endhighlight %}
 
-***Victory Dance!!***
-<iframe src="https://giphy.com/embed/NwR34KkKHjTjO" width="480" height="464" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/excited-dancing-happy-NwR34KkKHjTjO">via GIPHY</a></p>
+##Victory Dance!!
+<img src="/photos/dance.gif" alt="dance" height="300" width="400" align="left" hspace="20" />
 
+And that's it! I hope that you were able to follow along and enjoy this project as much as I have!
+If you have stuck through it this long *Congratulations* and *thank you* for sticking with me.
+I hope to put out some more articles soon on "How to set up a jekyll site on a remote server using Google Cloud Services"
+and a more personal story- "Journey to Coding Enjoyment".
+
+<br>
+
+## TODO and Roadmap
+- Right now the program still requires the user to pass in both the color and the title of the playlist to be created.
+I would like to eventually streamline this process.  
+- I would also like to play around with the different collections of data to "pool" from and the constraints in the algorithm.
 
