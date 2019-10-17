@@ -254,7 +254,7 @@ in the [functools](https://docs.python.org/3/library/functools.html) module.
 
 
 ### Filter
-When using `Filter` I often refer to the function I write to "feed" to the Higher Order Function as the "predicate" function.
+When using `filter` I often refer to the function I write to "feed" to the Higher Order Function as the "predicate" function.
 Let's say you are asked to find which numbers are even when given a list of numbers [1 ,2, 3, 4]. We could use [filter](https://www.w3schools.com/python/ref_func_filter.asp)
 to do so, but first we need to write a function to pass to `filter`
 *Note: Since python is lazy, when using `filter`, `list` must be used to display the content, otherwise your output will read `<filter object at 0x7d98ab32a700>`*
