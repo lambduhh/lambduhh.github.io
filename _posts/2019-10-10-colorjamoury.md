@@ -19,7 +19,7 @@ I hope you enjoy this walkthrough as much as I enjoyed making this project!
 
 <img src="/photos/warning-icon.png" alt="warning" width="50" align="left" hspace="20" />If you haven't yet, please refer to [Polyjamoury](https://lambduhh.github.io/2019/09/25/polyjamoury.html) for an introduction to the Project Architecture and Authorization Steps. 
 
-## Composing a mood
+## Composing a Mood
 
 When listening to any track I knew what color that ***I*** would categorize it, but I needed to be able to duplicate this process
 in my program. To get a better idea of the story that the data wanted to tell I handpicked songs that I felt properly represented each color. 
@@ -168,7 +168,7 @@ colors = {"red": {"danceability": {"min": 0, 'max': .5},
 {% endhighlight %}
 
 
-## Creating a pool of data  
+## Creating a Pool of Data  
 
 
 <img src="/photos/data-pool.jpg" alt="warning" width="200" align="right" hspace="20" />
@@ -177,6 +177,7 @@ Next steps to implementing my algorithm called for creating a pool of data from 
 Rather than just selecting from all
 my saved tracks, I thought it would be more interesting to instead create a pool that contained songs that I may not necessarily be acquainted with.
 I listen to a myriad of different musical artists and genres and I wanted that to be reflected in my playlists so I decided to take my top artist's top songs.
+
 
 {% highlight python %}
 def get_all_fav_artists() -> list:
@@ -204,6 +205,7 @@ def audio_features_all_favs() -> list:
 {% endhighlight %}
 
 I used a similar strategies as I did in [Recently Added Playlist](https://lambduhh.github.io/2019/09/25/polyjamoury.html#recently-added-playlist) except this time I adapted the methods I used to append my `short-term`, `medium-term`, and `long-term` artists.
+[Link to Full Code](https://github.com/lambduhh/polyjamoury/tree/master/app) for further clarification.
 As of 9/16/19 this extracted 91 of my different **favorite artists**. After finding each `artist_uri` using `mapv`, I looped through and pulled each
 artist's **top 10 songs** and added each to `ttrack_database`. This left me with a pool of 921 songs by my most listened to artists to play with.
 Down in my `if __name__ == '__main__':` I assigned `top_artist_top_tracks = audio_features_all_favs()` I found that running this section
@@ -219,7 +221,7 @@ If you are already familiar with `filter` and `partial` than please feel free to
 Alright folks, as tempted as I am to explore all the different nuances between Procedural/Imperative and Functional Programming ideologies,
 that is not the focus of this article. For my intents and purposes I am just going to review a couple of key concepts that may
 help you digest the next section of code. If you are intrigued by what you see here, I encourage you to read [SICP](https://mitpress.mit.edu/sites/default/files/sicp/index.html)
-(affectionately known as 'The Wizard Book) and watch [this](https://www.youtube.com/watch?v=2Op3QLzMgSY&list=PL8FE88AA54363BC46)
+(affectionately known as 'The Wizard Book') and watch [this](https://www.youtube.com/watch?v=2Op3QLzMgSY&list=PL8FE88AA54363BC46)
 series of videos offered by MITOpenCourseWare. 
  
 ### Procedures as Black Box Abstractions
@@ -247,15 +249,15 @@ But what happens if one robot was to build a smaller robot? Or if one robot was 
 This is what a [Higher Order Function](https://en.wikipedia.org/wiki/Higher-order_function) does. Many useful HOF can be found
 in the [functools](https://docs.python.org/3/library/functools.html) module.
 > A Higher Order Function is a function that does at least one of the following:
-- takes on or more functions as arguments
+- takes one or more functions as arguments
 - returns a function as its result  
 
 
 ### Filter
-When using a Higher Order Function I often refer to the function I write to "feed" to the Higher Order Function as a "predicate" function.
+When using `Filter` I often refer to the function I write to "feed" to the Higher Order Function as the "predicate" function.
 Let's say you are asked to find which numbers are even when given a list of numbers [1 ,2, 3, 4]. We could use [filter](https://www.w3schools.com/python/ref_func_filter.asp)
 to do so, but first we need to write a function to pass to `filter`
-*Note: Since computers are lazy when using a HOF `list` must be used to display the content, otherwise your output will read `<filter object at 0x7d98ab32a700>`*
+*Note: Since python is lazy, when using `filter`, `list` must be used to display the content, otherwise your output will read `<filter object at 0x7d98ab32a700>`*
   
 {% highlight python %}
 def is_even(number):  # this is the predicate function
@@ -404,6 +406,13 @@ if __name__ == '__main__':
     create_color_pl(colorsongs,"red")
     
 {% endhighlight %}
+
+After this code is run I was able to spin up spotify on my phone and view my new playlists. After listening to all my playlists I
+think I have determined that my favorite color of this round of the rainbow would probably be **yellow**. (If you would like to follow it on
+spotify the link is [here](https://open.spotify.com/playlist/1WNpBNzQ1NifkzTU1CouYF))
+ One of the great things about this project is the fact that as time goes on, if I run the program again the results change and
+  adapt to my recent listening habits. I look forward to tweaking the algorithm and recording different playlists over time. 
+
 
 
 ## Victory Dance!!
