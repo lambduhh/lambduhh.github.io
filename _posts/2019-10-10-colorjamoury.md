@@ -322,9 +322,9 @@ So `partial` is kind of like your cool friend Greg who actually brings his own b
   
 <a name="comparing">
 
-## Comparing to Sort
-Now we have all that sorted out we can return to the main project. At this point I have created a pool of song data
-for my algorithm and constructed the constraints by which to sort songs into their mood color.  
+## The Sorting Hat 
+Now we have all those prerequisites sorted out we can return to the main project. So if you remember, at this point I have created a pool of song data
+for my algorithm and constructed the constraints by which to sort songs into their mood color.
 But how can I go about actually sorting each song and placing it into a playlist?  
 Well, my next step will be to create a "predicate function" so that I may be able use `filter` to compare the audio features
 of each track to the color desired .
@@ -346,9 +346,13 @@ def is_song_color(color: dict, song: dict) -> bool:
 
 {% endhighlight %}
 
-All this function does is ask the question- Does the information in this *single* tracks's audio features (`song: dict`) fit within the constraints
- of `color :dict` ? If so, return True.
- In other words, `is_song_color`?
+All this function does is ask the question- Does the information in this *single* tracks's audio features dictionary fit within the constraints
+ of this color's dictionary? If the value of a track's danceability, energy, acousticness, tempo and valence is found to be within the set "min" and "max"
+the program will return True. In other words, it is an algorithm that looks at a track's features and asks `is_song_color`?  
+
+This next part is "The Sorting Hat" aspect of the program. *Note: As I mentioned earlier, to manage runtime I wrote the pool of data `all_song_features` to a `.json` file.
+I also created the function `save_songs` to copy the list of tracks of a given color over to a file titled `colorsongs` so I could view
+each collection more clearly.*
   
  {% highlight python %}
 
@@ -368,18 +372,39 @@ def save_songs(colorsongs):
     with open('colorsongs.json', 'w') as f:
         f.write(json.dumps(colorsongs, indent=2))
     return colorsongs
-
     
 if __name__ == '__main__':
     colorsongs = create_color_data("red")
     save_songs(colorsongs)
-
-    
+      
  {% endhighlight %}
-As I mentioned earlier, to manage runtime I wrote the pool of data `all_song_features` to a `.json` file.
-I also created the function `save_songs` to copy the list of tracks of a given color over to a file titled `colorsongs` so I could view
-each collection more clearly.  
-When `create_color_data` is run with the selected color passed in as an argument, it returns a list of the tracks that fit within the
-constraints of that particular color. 
-
+ 
+When `create_color_data` is run with the selected color passed in as an argument, it will return a list of the tracks that fit within the
+constraints of that particular color. Here is a little lucidchart I whipped up as a visual representation of the steps `filter` and `partial`
+are going through. Consider it a psuedo-color-coded step through for your viewing pleasure.
 ![filterpartial](/photos/filterpartialred.svg)
+
+Now that I have a list of tracks that fit within each given color, my last step to seal the deal is to
+extract out each `track_uri` and add the tracks to a playlist!
+
+{% python highlight %}
+def create_color_pl(colorsongs: list, title: str) -> None:
+    pl_id = create_playlist(title)
+    playlist = []
+    for song in colorsongs:
+        song_uris = get_artist_uris(song)
+        playlist.append(song_uris)
+    add_tracks_to_playlist(pl_id, playlist)
+    return None
+    
+if __name__ == '__main__':
+    colorsongs = create_color_data("red")
+    save_songs(colorsongs)
+    create_color_pl(colorsongs,"red")
+    
+{% endhighlight %}
+
+***Victory Dance!!***
+<iframe src="https://giphy.com/embed/NwR34KkKHjTjO" width="480" height="464" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/excited-dancing-happy-NwR34KkKHjTjO">via GIPHY</a></p>
+
+
