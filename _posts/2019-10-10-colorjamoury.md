@@ -405,7 +405,8 @@ if __name__ == '__main__':
     
 {% endhighlight %}
 
-##Victory Dance!!
+
+## Victory Dance!!
 <img src="/photos/dance.gif" alt="dance" height="300" width="400" align="left" hspace="20" />
 
 And that's it! I hope that you were able to follow along and enjoy this project as much as I have!
@@ -414,7 +415,7 @@ I hope to put out some more articles soon on "How to set up a jekyll site on a r
 and a more personal story- "Journey to Coding Enjoyment".
 
 <br>
-
+<br>
 ## TODO and Roadmap
 - Right now the program still requires the user to pass in both the color and the title of the playlist to be created.
 I would like to eventually streamline this process.  
