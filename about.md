@@ -20,8 +20,8 @@ key: page-about
 
 
 <img src="/photos/71058255_10219958583940088_7748529758316527616_o.jpg" alt="Jordan wi Bully" width="200"/>
-<img src="/photos/IMG_20190430_180221_473.jpg" alt="42 " width="200"/>
-<IMG SRC="/photos/GIF-190926_144953.gif" alt="lyra gif" width="200"/>
+<img src="/photos/zelda.jpg" alt="zelda " width="200"/>
+<IMG SRC="/photos/lyra2.gif" alt="lyra gif" width="200"/>
 <img src="/photos/IMG_20190926_153832_218.jpg" alt="Programming at computer" width="200"/>
 <p align="left">
 
